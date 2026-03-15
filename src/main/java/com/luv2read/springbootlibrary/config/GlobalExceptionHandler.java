@@ -20,6 +20,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleException(Exception e, HttpServletRequest request) {
         log.error("Unhandled exception at [{}] {}: {}", request.getMethod(), request.getRequestURI(), e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("error", "An internal server error occurred"));
+                .body(Map.of(
+                    "error", e.getMessage() != null ? e.getMessage() : "An internal server error occurred",
+                    "type", e.getClass().getSimpleName()
+                ));
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.luv2read.springbootlibrary.entity.Book;
+import com.luv2read.springbootlibrary.entity.History;
 import com.luv2read.springbootlibrary.entity.Message;
 import com.luv2read.springbootlibrary.entity.Review;
 
@@ -27,6 +28,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 HttpMethod.PUT};
 
         config.exposeIdsFor(Book.class);
+        config.exposeIdsFor(History.class);
         config.exposeIdsFor(Review.class);
         config.exposeIdsFor(Message.class);
 
