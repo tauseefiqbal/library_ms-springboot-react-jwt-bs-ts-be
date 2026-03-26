@@ -8,7 +8,7 @@ public class PasswordHashGenerator {
         
         String password1 = "admin123";
         String password2 = "password123";
-        String password3 = "test123";
+        String password3 = "test1234";
         
         System.out.println("BCrypt hashes:");
         System.out.println("===============");

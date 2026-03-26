@@ -57,7 +57,8 @@ public class AuthenticationController {
             System.out.println("Authentication successful for: " + request.email());
         } catch (BadCredentialsException e) {
             System.out.println("Authentication failed for: " + request.email());
-            throw new Exception("Incorrect email or password", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Incorrect email or password"));
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.email());
@@ -135,7 +136,7 @@ public class AuthenticationController {
     @PostMapping("/create-admin")
     public ResponseEntity<?> createAdmin() {
         try {
-            Optional<User> existingUser = userRepository.findByEmail("admin@gmail.com");
+            Optional<User> existingUser = userRepository.findByEmail("admin@libraryms.com");
             
             User adminUser;
             if (existingUser.isPresent()) {
@@ -145,7 +146,7 @@ public class AuthenticationController {
                 adminUser.setName("Admin");
             } else {
                 adminUser = new User();
-                adminUser.setEmail("admin@gmail.com");
+                adminUser.setEmail("admin@libraryms.com");
                 adminUser.setPassword(passwordEncoder.encode("admin123"));
                 adminUser.setName("Admin");
                 adminUser.setIsAdmin(true);
@@ -155,7 +156,7 @@ public class AuthenticationController {
             
             return ResponseEntity.ok(Map.of(
                 "message", "Admin user created/updated successfully",
-                "email", "admin@gmail.com",
+                "email", "admin@libraryms.com",
                 "password", "admin123"
             ));
         } catch (Exception e) {
