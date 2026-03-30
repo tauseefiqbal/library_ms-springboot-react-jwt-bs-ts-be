@@ -33,5 +33,5 @@ build/
 .vscode/
 !**/src/test/**/target/
 
-### Configuration file
-!**/src/main/resources/application.properties
+### Configuration file (keep example, ignore actual)
+src/main/resources/application.properties
